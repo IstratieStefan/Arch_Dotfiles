@@ -27,7 +27,7 @@ font pango:monospace 15
 #font pango:DejaVu Sans Mono 8
 
 # start a terminal. We use kitty.
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -51,7 +51,8 @@ bindsym $mod+d exec --no-startup-id rofi -show drun  -theme
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Provide Gaps to Windows. Increase/Decrease as you like.
-gaps inner 20
+gaps inner 15
+
 
 #Compositor. This helps in transparency and fading.
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf --experimental-backends
@@ -250,13 +251,13 @@ bindsym $mod+r mode "resize"
 # for_window [class="nameofapp"] move to workspace $wsno.
 # WS No. 5 has been used as example.
 # Note: You will have to launch the program from a program launcher (rofi).
-for_window [class="brave"] move to workspace $ws5
+for_window [class="firefox"] move to workspace $ws5
 
 # The following way allows programs to be launched with a
 # defined keybinding, on a certain workspace, without
 # touching program launcher. Assign Programs to respective
 # workspaces.
-bindsym $mod+b workspace 5; exec brave
+bindsym $mod+b workspace 5; exec firefox
 
 
 #Multi Monitor (Dual Monitor, extended monitor)
@@ -264,10 +265,6 @@ bindsym $mod+b workspace 5; exec brave
 #eDP-X is the display used in Laptops.
 #HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
 #VGA-X is display used in Desktop connected to monitor with VGA Cable.
-exec_always --no-startup-id ~/.screenlayout/layout-pc.sh
-
-exec xrandr --output HDMI-1 --mode 1920x1080 --rate 75
-exec xrandr --output DP-2 --mode 1920x1080 --rate 165
 
 for_window [class=".*"] border pixel 4
 
@@ -292,3 +289,9 @@ client.background       $bg
 
 #dunst
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
+#network manager applet:
+exec_always nm-applet --no-agent
+
+#blueman
+exec_always blueman-applet

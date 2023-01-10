@@ -47,7 +47,7 @@ wm-restack = bspwm
 
 modules-left = bspwm i3 xwindow
 modules-center = date time
-modules-right = playerctl empty-space pulseaudio empty-space cpu empty-space memory empty-space powermenu
+modules-right = playerctl empty-space pulseaudio empty-space cpu empty-space memory empty-space battery empty-space powermenu
 
 font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=10;3
 font-1 = JetBrainsMono Nerd Font:size=14;4
@@ -58,7 +58,7 @@ font-3 = FiraCode Nerd Font:size=10
 
 [module/empty-space]
 type = custom/text
-content = "  "
+content = "  "
 label-foreground = ${xrdb:color1:#222}
 format-foreground = ${colors.foreground}
 
@@ -103,23 +103,23 @@ label-mode-background = ${colors.background}
 label-focused = %index%
 label-focused-foreground = ${colors.foreground}
 label-focused-underline = ${xrdb:color1:#222}
-label-focused-padding = 2
+label-focused-padding = 1
 
 label-unfocused = %index%
-label-unfocused-padding = 0
+label-unfocused-padding = 1
 
 label-visible = %index%
 label-visible-underline = ${xrdb:color4:#222}
-label-visible-padding = 2
+label-visible-padding = 1
 
 label-urgent = %index%
 label-urgent-foreground = ${xrdb:color3:#222}
 label-urgent-background = ${colors.background}
-label-urgent-padding = 4
+label-urgent-padding = 1
 
 ; Separator in between workspaces
-label-separator = 
-label-separator-padding = 2
+label-separator = 
+label-separator-padding = 1
 label-separator-foreground = #ffb52a
 
 
@@ -163,7 +163,7 @@ format-padding = 1
 type = internal/cpu
 interval = 2.5
 format =  <label> 
-label = CPU %percentage%%
+label = %percentage%%
 label-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
@@ -172,7 +172,7 @@ format-foreground = ${colors.foreground}
 type = internal/memory
 interval = 3
 warn-percentage = 95
-label = RAM %gb_used%/%gb_free%
+label = %percentage_used%%
 
 [module/xwindow]
 format-padding = 2
@@ -214,7 +214,7 @@ low-at = 5
 
 ; Use the following command to list batteries and adapters:
 ; $ ls -1 /sys/class/power_supply/
-battery = BAT0
+battery = BAT1
 adapter = ADP1
 poll-interval = 5
 
@@ -227,19 +227,19 @@ format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 ;format-full = <ramp-capacity> <label-full>
 
-label-charging = Charging %percentage%%
+label-charging =%percentage%%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
-label-discharging = Discharging %percentage%%
+label-discharging =%percentage%%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
 ;   %percentage_raw%
-label-full = Fully charged
+label-full = 100%
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -250,23 +250,30 @@ label-full = Fully charged
 label-low = BATTERY LOW
 
 ; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = 
+ramp-capacity-1 =
+ramp-capacity-2 =
+ramp-capacity-3 =
+ramp-capacity-4 =
+ramp-capacity-5 =
+ramp-capacity-6 =
+ramp-capacity-7 =
+ramp-capacity-8 =
+ramp-capacity-9 =
 
 ; Only applies if <bar-capacity> is used
 bar-capacity-width = 10
 
 ; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 =
+animation-charging-1 =
+animation-charging-2 =
+animation-charging-3 = 
+animation-charging-4 =
+animation-charging-5 =
+animation-charging-6 =
 ; Framerate in milliseconds
-animation-charging-framerate = 750
+animation-charging-framerate = 400
 
 ; Only applies if <animation-discharging> is used
 animation-discharging-0 = 
@@ -279,7 +286,7 @@ animation-discharging-framerate = 500
 
 ; Only applies if <animation-low> is used
 ; New in version 3.6.0
-animation-low-0 = !
-animation-low-1 = 
+animation-low-0 = 
+animation-low-1 = 
 animation-low-framerate = 200
 
